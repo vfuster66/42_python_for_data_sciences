@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: ft_package
+Version: 0.0.1
+Summary: A sample test package
+Author-email: eagle <eagle@42.fr>
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# ft_package
+
+A simple Python package for counting elements in a list.
