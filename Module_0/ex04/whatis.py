@@ -1,6 +1,5 @@
-
-
 import sys
+
 
 def main():
     try:
@@ -8,7 +7,8 @@ def main():
         if len(sys.argv) != 2:
             raise AssertionError(
                 "Usage: python whatis.py <number>\n"
-                + ("no argument is provided" if len(sys.argv) == 1 else "more than one argument is provided")
+                + ("no argument is provided" if len(sys.argv) == 1 else "more\
+                   than one argument is provided")
             )
 
         # Vérification que l'argument est un entier
@@ -26,6 +26,7 @@ def main():
     except AssertionError as e:
         # Affichage du message d'erreur propre sans Traceback
         print(e)
+
 
 if __name__ == "__main__":
     main()

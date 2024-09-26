@@ -13,7 +13,6 @@ def all_thing_is_obj(obj: any) -> int:
         print(f"{obj} is in the kitchen : {type(obj)}")
     else:
         print("Type not found")
-    
+
     # Retourne toujours 42
     return 42
-

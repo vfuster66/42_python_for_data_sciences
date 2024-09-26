@@ -1,4 +1,4 @@
-#!/home/vfuster-/Documents/python_for_data_sciences/venv/bin/python3.10
+#!/home/vfuster-/python_for_data_sciences/venv/bin/python3.10
 # -*- coding: utf-8 -*-
 import re
 import sys

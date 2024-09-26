@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/vfuster-/Documents/python_for_data_sciences/venv"
+VIRTUAL_ENV="/home/vfuster-/python_for_data_sciences/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

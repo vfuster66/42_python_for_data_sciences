@@ -1,4 +1,4 @@
-from ft_package import count_in_list
+from ft_package.count_in_list import count_in_list
 
 # Tester la fonction count_in_list
 print(count_in_list(["toto", "tata", "toto"], "toto"))  # Devrait afficher: 2

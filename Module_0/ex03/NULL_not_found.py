@@ -2,7 +2,7 @@ def NULL_not_found(obj: any) -> int:
     # Vérifier chaque type et afficher le résultat correspondant
     if obj is None:
         print(f"Nothing: {obj} {type(obj)}")
-    elif isinstance(obj, float) and obj != obj:  # Vérifier NaN (car NaN != NaN)
+    elif isinstance(obj, float) and obj != obj:
         print(f"Cheese: nan {type(obj)}")
     elif obj is False:
         print(f"Fake: {obj} {type(obj)}")
@@ -13,5 +13,5 @@ def NULL_not_found(obj: any) -> int:
     else:
         print("Type not Found")
         return 1
-    
+
     return 0

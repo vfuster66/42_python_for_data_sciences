@@ -1,9 +1,11 @@
 import sys
 from ft_filter import ft_filter
 
+
 def main():
     """
-    Le programme filtre les mots d'une chaîne (S) qui ont une longueur supérieure à N.
+    Le programme filtre les mots d'une chaîne (S) qui ont une longueur
+    supérieure à N.
     """
     try:
         # Vérification du nombre d'arguments et de leur type
@@ -27,8 +29,13 @@ def main():
 
     except AssertionError as e:
         print(e)
+    except ValueError as e:
+        print(f"ValueError: {e}")
+    except TypeError as e:
+        print(f"TypeError: {e}")
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
+
 
 if __name__ == "__main__":
     main()

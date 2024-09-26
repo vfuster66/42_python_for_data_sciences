@@ -1,12 +1,17 @@
 import time
-import sys
 import shutil
 from typing import Generator
 
 
-def format_time(seconds):
+def format_time(seconds: float) -> str:
     """
     Formate le temps donné en secondes au format MM:SS.
+
+    Args:
+        seconds (float): Le temps en secondes à formater.
+
+    Returns:
+        str: Le temps formaté au format MM:SS.
     """
     m, s = divmod(seconds, 60)
     return f"{int(m):02d}:{int(s):02d}"
@@ -20,12 +25,11 @@ def ft_tqdm(lst: range) -> Generator[int, None, None]:
         lst (range): La plage sur laquelle itérer.
 
     Yields:
-        Tout élément de la plage.
+        int: Chaque élément de la plage.
     """
     total = len(lst)
     start_time = time.time()
 
-    # Obtenir la largeur du terminal pour ajuster dynamiquement la barre de progression
     terminal_width = shutil.get_terminal_size().columns - 30
     progress_bar_width = terminal_width - 10
 
@@ -49,7 +53,7 @@ def ft_tqdm(lst: range) -> Generator[int, None, None]:
         # Afficher la barre de progression
         print(f"\r{progress_info} {time_info}", end="", flush=True)
 
-        yield item  # Utilisation de yield pour renvoyer l'élément tout en mettant à jour la progression
+        yield item
 
     # Fin de la barre de progression
     print()
@@ -57,10 +61,14 @@ def ft_tqdm(lst: range) -> Generator[int, None, None]:
 
 def main():
     """
-    Fonction principale pour tester la barre de progression avec une plage de valeurs.
+    Fonction principale pour tester la barre de progression avec
+    une plage de valeurs.
     """
-    for _ in ft_tqdm(range(0, 333)):
-        time.sleep(0.005)
+    try:
+        for _ in ft_tqdm(range(0, 333)):
+            time.sleep(0.005)
+    except Exception as e:
+        print(f"Une erreur s'est produite : {e}")
 
 
 if __name__ == "__main__":

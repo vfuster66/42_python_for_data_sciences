@@ -1,7 +1,6 @@
 LICENSE
 README.md
 pyproject.toml
-ft_package/__init__.py
 ft_package/count.py
 ft_package.egg-info/PKG-INFO
 ft_package.egg-info/SOURCES.txt
