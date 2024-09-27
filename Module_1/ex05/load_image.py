@@ -1,6 +1,4 @@
-# load_image.py
-
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
 import numpy as np
 
 
@@ -27,6 +25,10 @@ def ft_load(path: str) -> np.ndarray:
 
     except FileNotFoundError:
         print(f"Erreur : L'image '{path}' n'a pas été trouvée.")
+        return None
+    except UnidentifiedImageError:
+        print(f"Erreur : Le fichier '{path}' n'est pas un format d'image "
+              f"valide.")
         return None
     except IOError:
         print(f"Erreur : Impossible de lire le fichier '{path}'.")
