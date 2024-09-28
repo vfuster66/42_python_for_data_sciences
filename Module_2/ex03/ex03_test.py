@@ -1,8 +1,6 @@
 import os
-import pandas as pd
-from load_csv import load
-import webbrowser
 from aff_multi_stats import main as run_projection
+from load_csv import load
 
 
 def test_load_valid_files():
@@ -61,7 +59,7 @@ def test_missing_column():
 
 def test_graph_generated():
     """
-    Teste si le graphique est bien généré et sauvegardé.
+    Teste si le graphique est bien généré et sauvegardé sans l'ouvrir.
     """
     print("\n--- Test : Génération du graphique ---")
 
@@ -74,12 +72,9 @@ def test_graph_generated():
 
     print(f"Test réussi : Le fichier '{graph_file}' a été généré avec succès.")
 
-    # Ouvrir l'image générée
-    webbrowser.open(graph_file)
-
     # Nettoyage : Supprimer le fichier après le test
-    os.remove(graph_file)
-    print(f"Fichier '{graph_file}' supprimé après le test.")
+    # os.remove(graph_file)
+    # print(f"Fichier '{graph_file}' supprimé après le test.")
 
 
 def run_tests():

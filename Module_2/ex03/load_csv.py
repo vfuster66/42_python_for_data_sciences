@@ -18,8 +18,8 @@ def load(path: str):
         df = pd.read_csv(path)
 
         # Afficher les dimensions du dataset
-        print(f"Le dataset contient {df.shape[0]} lignes "
-              f"et {df.shape[1]} colonnes.")
+        # print(f"Le dataset contient {df.shape[0]} lignes "
+        #      f"et {df.shape[1]} colonnes.")
 
         return df
     except FileNotFoundError:

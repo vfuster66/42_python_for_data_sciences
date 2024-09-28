@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/vfuster-/python_for_data_sciences/venv"
+set -gx VIRTUAL_ENV "/home/vfuster-/Alternance/RNCP7_Option_2/python_for_data_sciences/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
