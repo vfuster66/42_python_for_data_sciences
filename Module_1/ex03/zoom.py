@@ -1,13 +1,12 @@
 from load_image import ft_load
 import numpy as np
 import matplotlib.pyplot as plt
-from PIL import Image
 
 
 def ft_zoom(path: str) -> np.ndarray:
     """
-    Charge une image, imprime ses dimensions, effectue un zoom et affiche
-    l'image avec les axes X et Y.
+    Charge une image, imprime ses dimensions, effectue un zoom et sauvegarde
+    l'image zoomée avec les axes X et Y.
     """
     # Charger l'image en utilisant ft_load de load_image.py
     img_array = ft_load(path)
@@ -23,27 +22,28 @@ def ft_zoom(path: str) -> np.ndarray:
     center_x, center_y = img_array.shape[1] // 2, img_array.shape[0] // 2
     zoom_size = 200
     zoomed_img_array = img_array[
-        center_y - zoom_size//2: center_y + zoom_size//2,
-        center_x - zoom_size//2: center_x + zoom_size//2]
+        center_y - zoom_size // 2: center_y + zoom_size // 2,
+        center_x - zoom_size // 2: center_x + zoom_size // 2]
 
     # Afficher les dimensions de l'image zoomée et les pixels
     print(f"Nouvelle taille après zoom : {zoomed_img_array.shape}")
 
-    # Créer une figure avec matplotlib
+    # Créer une figure avec matplotlib (sans show)
     fig, ax = plt.subplots()
-    ax.imshow(zoomed_img_array)
+    im = ax.imshow(zoomed_img_array)
     ax.set_title("Image zoomée")
     ax.set_xlabel("Axe X")
     ax.set_ylabel("Axe Y")
     plt.grid(True)
-    plt.colorbar(ax.imshow(zoomed_img_array))
+    plt.colorbar(im)
 
     # Sauvegarder la figure avec les axes et échelles
-    fig.savefig("zoomed_image_with_axes.png")
+    output_file = "zoomed_image_with_axes.png"
+    fig.savefig(output_file)
+    print(f"Image zoomée sauvegardée dans '{output_file}'")
 
-    # Utiliser PIL pour ouvrir et afficher l'image sauvegardée
-    zoomed_img_with_axes = Image.open("zoomed_image_with_axes.png")
-    zoomed_img_with_axes.show()
+    # Fermer la figure pour libérer la mémoire
+    plt.close(fig)
 
     return zoomed_img_array
 

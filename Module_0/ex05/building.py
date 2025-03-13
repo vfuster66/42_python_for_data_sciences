@@ -32,10 +32,8 @@ def count_characters(text: str) -> dict:
 
 def main():
     """
-    Point d'entrée principal du programme.
-    Prend un argument en ligne de commande et affiche
-    les informations statistiques sur la chaîne.
-    Gère les erreurs lorsqu'il n'y a pas ou trop d'arguments.
+    Prend un argument en ligne de commande ou demande à l'utilisateur
+    et affiche les statistiques sur les caractères de la chaîne.
     """
     try:
         if len(sys.argv) == 1:  # Aucun argument fourni
@@ -43,7 +41,7 @@ def main():
         elif len(sys.argv) == 2:  # Un seul argument
             text = sys.argv[1]
         else:  # Trop d'arguments fournis
-            raise AssertionError("Please provide only one argument.")
+            raise AssertionError("more than one argument is provided")
 
         counts = count_characters(text)
         total_characters = len(text)
@@ -56,7 +54,7 @@ def main():
         print(f"{counts['digits']} digits")
 
     except AssertionError as e:
-        print(e)
+        print(f"AssertionError: {e}")
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 

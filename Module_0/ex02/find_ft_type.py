@@ -1,18 +1,18 @@
-
-def all_thing_is_obj(obj: any) -> int:
-    # Vérifie le type de l'objet et affiche en conséquence
-    if isinstance(obj, list):
-        print(f"List : {type(obj)}")
-    elif isinstance(obj, tuple):
-        print(f"Tuple : {type(obj)}")
-    elif isinstance(obj, set):
-        print(f"Set : {type(obj)}")
-    elif isinstance(obj, dict):
-        print(f"Dict : {type(obj)}")
-    elif isinstance(obj, str):
-        print(f"{obj} is in the kitchen : {type(obj)}")
+def all_thing_is_obj(object: any) -> int:
+    """
+    Affiche le type de l'objet passé en paramètre et retourne 42.
+    """
+    if isinstance(object, list):
+        print(f"List : {type(object)}")
+    elif isinstance(object, tuple):
+        print(f"Tuple : {type(object)}")
+    elif isinstance(object, set):
+        print(f"Set : {type(object)}")
+    elif isinstance(object, dict):
+        print(f"Dict : {type(object)}")
+    elif isinstance(object, str):
+        print(f"{object} is in the kitchen : {type(object)}")
     else:
         print("Type not found")
 
-    # Retourne toujours 42
     return 42

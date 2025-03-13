@@ -1,60 +1,59 @@
 import sys
 
-# Dictionnaire Morse
 NESTED_MORSE = {
-    "A": ".- ", "B": "-... ", "C": "-.-. ", "D": "-.. ",
-    "E": ". ", "F": "..-. ",
-    "G": "--. ", "H": ".... ", "I": ".. ", "J": ".--- ",
-    "K": "-.- ", "L": ".-.. ",
-    "M": "-- ", "N": "-. ", "O": "--- ", "P": ".--. ",
-    "Q": "--.- ", "R": ".-. ",
-    "S": "... ", "T": "- ", "U": "..- ", "V": "...- ",
-    "W": ".-- ", "X": "-..- ",
-    "Y": "-.-- ", "Z": "--.. ", "0": "----- ", "1": ".---- ",
-    "2": "..--- ",
-    "3": "...-- ", "4": "....- ", "5": "..... ", "6": "-.... ",
-    "7": "--... ",
-    "8": "---.. ", "9": "----. ", " ": "/ "
+    "A": ".-", "B": "-...", "C": "-.-.", "D": "-..",
+    "E": ".", "F": "..-.",
+    "G": "--.", "H": "....", "I": "..", "J": ".---",
+    "K": "-.-", "L": ".-..",
+    "M": "--", "N": "-.", "O": "---", "P": ".--.",
+    "Q": "--.-", "R": ".-.",
+    "S": "...", "T": "-", "U": "..-", "V": "...-",
+    "W": ".--", "X": "-..-",
+    "Y": "-.--", "Z": "--..",
+    "0": "-----", "1": ".----", "2": "..---", "3": "...--",
+    "4": "....-", "5": ".....", "6": "-....", "7": "--...",
+    "8": "---..", "9": "----.",
+    " ": "/"
 }
+
+# Caractères à problème avec bash
+BASH_INTERPRETED_CHARS = ['$', '!', '&', '*', '|', '<', '>', '?', '`', '\\',
+                          '"', ';', '(', ')']
 
 
 def encode_to_morse(text):
-    """
-    Encode une chaîne de caractères en code Morse en utilisant
-    le dictionnaire NESTED_MORSE.
-    Si un caractère non alphanumérique ou espace est trouvé,
-    lève une AssertionError.
-    """
-    morse_code = ""
-    for char in text:
-        upper_char = char.upper()
+    invalid_chars = [char for char in text if char.upper() not in NESTED_MORSE]
 
-        # Vérification si le caractère est dans NESTED_MORSE
-        if upper_char not in NESTED_MORSE:
-            raise AssertionError("the arguments are bad")
+    if invalid_chars:
+        raise AssertionError(
+            f"the arguments are bad: invalid character(s) {invalid_chars}")
 
-        morse_code += NESTED_MORSE[upper_char]
+    morse_code_list = [NESTED_MORSE[char.upper()] for char in text]
 
-    return morse_code.strip()
+    return " ".join(morse_code_list)
 
 
 def main():
-    """
-    Fonction principale du programme.
-    Prend un argument et le convertit en Morse.
-    """
     try:
         if len(sys.argv) != 2:
             raise AssertionError("the arguments are bad")
 
         text = sys.argv[1]
+
+        if any(char in text for char in BASH_INTERPRETED_CHARS):
+            # ➡️ On avertit l'utilisateur
+            print("⚠️  Attention : des caractères spéciaux détectés "
+                  "dans l'argument transmis.")
+            print("💡 Conseil : utilisez des quotes simples (') "
+                  "pour éviter l'interprétation de bash.")
+            print("➡️  Exemple : python3 sos.py 'H$llo'")
+            return
+
         morse_code = encode_to_morse(text)
         print(morse_code)
 
     except AssertionError as e:
-        print(e)
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+        print(f"AssertionError: {e}")
 
 
 if __name__ == "__main__":

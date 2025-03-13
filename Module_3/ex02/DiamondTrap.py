@@ -1,4 +1,4 @@
-from S1E7 import Baratheon, Lannister
+from ex01.S1E7 import Baratheon, Lannister
 
 
 class King(Baratheon, Lannister):

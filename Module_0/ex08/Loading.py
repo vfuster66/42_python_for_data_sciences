@@ -1,71 +1,45 @@
 import time
-import shutil
-from typing import Generator
 
 
 def format_time(seconds: float) -> str:
-    """
-    Formate le temps donné en secondes au format MM:SS.
-
-    Args:
-        seconds (float): Le temps en secondes à formater.
-
-    Returns:
-        str: Le temps formaté au format MM:SS.
-    """
     m, s = divmod(seconds, 60)
     return f"{int(m):02d}:{int(s):02d}"
 
 
-def ft_tqdm(lst: range) -> Generator[int, None, None]:
+def ft_tqdm(lst):
     """
-    Simule une barre de progression pour itérer sur une range.
-
-    Args:
-        lst (range): La plage sur laquelle itérer.
-
-    Yields:
-        int: Chaque élément de la plage.
+    Reproduction de la fonction tqdm avec un yield.
+    Affiche une barre de progression lors de l'itération.
     """
     total = len(lst)
     start_time = time.time()
 
-    terminal_width = shutil.get_terminal_size().columns - 30
-    progress_bar_width = terminal_width - 10
+    for index, item in enumerate(lst, 1):
+        progress = index / total
+        bar_length = 50
+        filled_length = int(bar_length * progress)
 
-    for i, item in enumerate(lst, start=1):
-        # Calcul de la progression
-        progress = int(i / total * progress_bar_width)
+        bar = '=' * filled_length + ' ' * (bar_length - filled_length)
+
         elapsed_time = time.time() - start_time
-        speed = i / elapsed_time
-        eta = (total - i) / speed
+        speed = index / elapsed_time if elapsed_time > 0 else 0
 
-        # Formater les temps écoulé et estimé
-        elapsed_formatted = format_time(elapsed_time)
-        eta_formatted = format_time(eta)
-
-        # Construire la barre de progression
-        progress_bar = f"|{'█' * progress:<{progress_bar_width}}|"
-        progress_percentage = progress * 100 // progress_bar_width
-        progress_info = f"{progress_percentage}%{progress_bar} {i}/{total}"
-        time_info = f"[{elapsed_formatted}<{eta_formatted}, {speed:.2f}it/s]"
-
-        # Afficher la barre de progression
-        print(f"\r{progress_info} {time_info}", end="", flush=True)
-
+        print(
+            f"\r{int(progress * 100):3}%|[{bar}]| {index}/{total} "
+            f"[{elapsed_time:0.2f}s<"
+            f"{(elapsed_time / index) * (total - index):0.2f}s, "
+            f"{speed:0.2f}it/s]",
+            end='',
+            flush=True
+        )
         yield item
 
-    # Fin de la barre de progression
     print()
 
 
 def main():
-    """
-    Fonction principale pour tester la barre de progression avec
-    une plage de valeurs.
-    """
     try:
-        for _ in ft_tqdm(range(0, 333)):
+        for _ in ft_tqdm(range(333)):
             time.sleep(0.005)
     except Exception as e:
         print(f"Une erreur s'est produite : {e}")

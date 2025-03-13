@@ -8,33 +8,31 @@ def main():
     supérieure à N.
     """
     try:
-        # Vérification du nombre d'arguments et de leur type
+        # Vérification du nombre d'arguments
         if len(sys.argv) != 3:
             raise AssertionError("AssertionError: the arguments are bad")
 
         s = sys.argv[1]
+
+        # Vérification que le second argument est un entier
         try:
             n = int(sys.argv[2])
         except ValueError:
             raise AssertionError("AssertionError: the arguments are bad")
 
-        # Séparer les mots de la chaîne S
+        # Découpe la string en mots
         words = s.split()
 
-        # Utilisation de ft_filter et d'une lambda pour filtrer les mots
-        filtered_words = list(ft_filter(lambda word: len(word) > n, words))
+        # Applique la lambda avec ft_filter (lambda obligatoire !)
+        filtered_words = [
+            word for word in ft_filter(lambda word: len(word) > n, words)
+        ]
 
-        # Affichage du résultat
+        # Affiche la liste résultante
         print(filtered_words)
 
     except AssertionError as e:
         print(e)
-    except ValueError as e:
-        print(f"ValueError: {e}")
-    except TypeError as e:
-        print(f"TypeError: {e}")
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
 
 
 if __name__ == "__main__":
