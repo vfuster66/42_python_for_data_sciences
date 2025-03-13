@@ -1,4 +1,3 @@
-import sys
 import string
 
 
@@ -28,36 +27,3 @@ def count_characters(text: str) -> dict:
             counts["spaces"] += 1
 
     return counts
-
-
-def main():
-    """
-    Prend un argument en ligne de commande ou demande à l'utilisateur
-    et affiche les statistiques sur les caractères de la chaîne.
-    """
-    try:
-        if len(sys.argv) == 1:  # Aucun argument fourni
-            text = input("What is the text to count?\n")
-        elif len(sys.argv) == 2:  # Un seul argument
-            text = sys.argv[1]
-        else:  # Trop d'arguments fournis
-            raise AssertionError("more than one argument is provided")
-
-        counts = count_characters(text)
-        total_characters = len(text)
-
-        print(f"The text contains {total_characters} characters:")
-        print(f"{counts['upper']} upper letters")
-        print(f"{counts['lower']} lower letters")
-        print(f"{counts['punctuation']} punctuation marks")
-        print(f"{counts['spaces']} spaces")
-        print(f"{counts['digits']} digits")
-
-    except AssertionError as e:
-        print(f"AssertionError: {e}")
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
-
-
-if __name__ == "__main__":
-    main()

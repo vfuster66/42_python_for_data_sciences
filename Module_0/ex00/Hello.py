@@ -1,27 +1,30 @@
-# Initialisation des structures de données
-ft_list = ["Hello", "tata!"]
-ft_tuple = ("Hello", "toto!")
-ft_set = {"Hello", "tutu!"}
-ft_dict = {"Hello": "titi!"}
+from printer import print_title, print_success
 
-# Modifications des valeurs pour afficher les salutations requises
 
-# Pour ft_list
-ft_list[1] = "World!"
+def display_hello():
+    """
+    Modifie et affiche les structures de données avec les valeurs demandées.
+    """
+    print_title("=== EX00 ➜ First Python Script ===")
 
-# Pour ft_tuple (les tuples sont immuables, donc on recrée le tuple)
-ft_tuple = (ft_tuple[0], "France!")
+    # Initialisation des structures de données
+    ft_list = ["Hello", "tata!"]
+    ft_tuple = ("Hello", "toto!")
+    ft_set = {"Hello", "tutu!"}
+    ft_dict = {"Hello": "titi!"}
 
-# Pour ft_set (les sets sont non ordonnés,
-# on doit donc gérer les ajouts et suppressions)
-ft_set.remove("tutu!")
-ft_set.add("Perpignan!")
+    # Modifications
+    ft_list[1] = "World!"
+    ft_tuple = (ft_tuple[0], "France!")
+    ft_set.remove("tutu!")
+    ft_set.add("Perpignan!")
+    ft_dict["Hello"] = "42Perpignan!"
 
-# Pour ft_dict
-ft_dict["Hello"] = "42Perpignan!"
+    # Affichage des résultats
+    print_success(f"✅ Liste : {ft_list}")
+    print_success(f"✅ Tuple : {ft_tuple}")
+    print_success(f"✅ Set   : {sorted(ft_set)}")
+    print_success(f"✅ Dict  : {ft_dict}")
 
-# Affichage des résultats finaux
-print(ft_list)  # Affichage de la liste modifiée
-print(ft_tuple)  # Affichage du tuple modifié
-print(sorted(ft_set))  # Le tri permet de garantir un ordre lors de l'affichage
-print(ft_dict)  # Affichage du dictionnaire modifié
+    # Retourne les structures pour test éventuel
+    return ft_list, ft_tuple, sorted(ft_set), ft_dict

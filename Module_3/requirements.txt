@@ -4,3 +4,5 @@ matplotlib
 seaborn
 Pillow
 flake8
+pytest
+colorama

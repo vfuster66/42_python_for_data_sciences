@@ -5,3 +5,5 @@ seaborn
 Pillow
 flake8
 tqdm
+colorama
+pytest
