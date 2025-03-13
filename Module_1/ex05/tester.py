@@ -1,37 +1,62 @@
-from load_image import ft_load
-from pimp_image import ft_invert, ft_blue, ft_green, ft_red, ft_grey
-from PIL import Image
+import sys
 import numpy as np
-import os
-import webbrowser
-
-# Charger l'image
-array = ft_load("landscape.jpg")
-
-# Appliquer les filtres
-inverted = ft_invert(array)
-red_filtered = ft_red(array)
-green_filtered = ft_green(array)
-blue_filtered = ft_blue(array)
-grey_filtered = ft_grey(array)
+from PIL import Image
+from ex02.load_image import ft_load
+from pimp_image import ft_invert, ft_red, ft_green, ft_blue, ft_grey
+from printer import print_title, print_info, print_success, print_failure
 
 
-# Fonction pour sauvegarder l'image
-def save_and_open_image(image_array, filename):
-    # Sauvegarder l'image en fichier PNG
-    img = Image.fromarray(image_array.astype(np.uint8))
-    img.save(filename)
+def save_image(array: np.ndarray, filename: str):
+    """Sauvegarde une image à partir d'un array"""
+    try:
+        img = Image.fromarray(array.astype(np.uint8))
+        img.save(filename)
+        print_success(f"✅ ✅ Image sauvegardée : {filename}")
+    except Exception as e:
+        print_failure(
+            f"❌ ❌ Impossible de sauvegarder l'image {filename} : {e}"
+        )
 
-    # Ouvrir l'image avec le viewer d'image par défaut du système
-    if os.name == 'nt':  # Pour Windows
-        os.system(f'start {filename}')
-    elif os.name == 'posix':  # Pour macOS et Linux
-        webbrowser.open(f'file://{os.path.abspath(filename)}')
+
+def main():
+    args = sys.argv[1:]
+    image_path = None
+
+    for arg in args:
+        if arg.startswith("image="):
+            image_path = arg.split("=", 1)[1]
+
+    if not image_path:
+        print_failure("❌ ❌ Aucun chemin d'image fourni !")
+        print_info("🔎 👉 Exemple : make ex05 image=ex05/landscape.jpg")
+        return
+
+    print_title("=== Ex05 ➜ Tester pimp_image ===")
+    print_info(f"🔎 Chargement de l'image : {image_path}")
+
+    array = ft_load(image_path)
+    if array is None:
+        print_failure("❌ ❌ Impossible de charger l'image.")
+        return
+
+    print_success(f"✅ ✅ Image chargée avec succès : {array.shape}")
+
+    filters = {
+        "inverted": ft_invert(array),
+        "red": ft_red(array),
+        "green": ft_green(array),
+        "blue": ft_blue(array),
+        "grey": ft_grey(array)
+    }
+
+    for name, result in filters.items():
+        if result is None:
+            print_failure(f"❌ ❌ Filtre {name} échoué !")
+        else:
+            save_image(result, f"{name}_image.png")
+
+    print_info("🔎 Tests de pimp_image terminés.\n")
 
 
-# Sauvegarder et afficher chaque image filtrée
-save_and_open_image(inverted, "inverted_image.png")
-save_and_open_image(red_filtered, "red_image.png")
-save_and_open_image(green_filtered, "green_image.png")
-save_and_open_image(blue_filtered, "blue_image.png")
-save_and_open_image(grey_filtered, "grey_image.png")
+if __name__ == "__main__":
+    main()
