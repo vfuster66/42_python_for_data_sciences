@@ -12,7 +12,7 @@ class TestEx04(unittest.TestCase):
         return result.stdout.strip()
 
     def test_even_number(self):
-        print_title("Test ➜ Nombre pair")
+        print_title("Test ➜ Ex04 Nombre pair")
         output = self.run_script('14')
 
         print_info(f"🔎 Résultat obtenu : {output}")
@@ -20,7 +20,7 @@ class TestEx04(unittest.TestCase):
         print_success("✅ ✅ Nombre pair OK")
 
     def test_odd_number(self):
-        print_title("Test ➜ Nombre impair")
+        print_title("Test ➜ Ex04 Nombre impair")
         output = self.run_script('-5')
 
         print_info(f"🔎 Résultat obtenu : {output}")
@@ -28,7 +28,7 @@ class TestEx04(unittest.TestCase):
         print_success("✅ ✅ Nombre impair OK")
 
     def test_zero(self):
-        print_title("Test ➜ Nombre zéro")
+        print_title("Test ➜ Ex04 Nombre zéro")
         output = self.run_script('0')
 
         print_info(f"🔎 Résultat obtenu : {output}")
@@ -36,14 +36,14 @@ class TestEx04(unittest.TestCase):
         print_success("✅ ✅ Zéro pair OK")
 
     def test_no_argument(self):
-        print_title("Test ➜ Aucun argument fourni")
+        print_title("Test ➜ Ex04 Aucun argument fourni")
         output = self.run_script()
         print_info(f"🔎 Résultat obtenu : {output!r}")
         self.assertEqual(output.strip(), "")
         print_success("✅ ✅ Aucun argument OK (aucune sortie attendue)")
 
     def test_multiple_arguments(self):
-        print_title("Test ➜ Trop d'arguments fournis")
+        print_title("Test ➜ Ex04 Trop d'arguments fournis")
         output = self.run_script('13', '5')
 
         print_info(f"🔎 Résultat obtenu : {output}")
@@ -51,7 +51,7 @@ class TestEx04(unittest.TestCase):
         print_success("✅ ✅ Trop d'arguments OK")
 
     def test_not_an_integer(self):
-        print_title("Test ➜ Argument non entier")
+        print_title("Test ➜ Ex04 Argument non entier")
         output = self.run_script('hello')
 
         print_info(f"🔎 Résultat obtenu : {output}")

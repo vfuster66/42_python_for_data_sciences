@@ -3,7 +3,7 @@ from printer import print_title, print_success
 
 
 def test_ex05_argument():
-    print_title("Test ➜ Texte fourni en argument")
+    print_title("Test ➜ Ex05 Texte fourni en argument")
 
     text = "Python 3.0, released in 2008."
     result = subprocess.run(
@@ -20,11 +20,11 @@ def test_ex05_argument():
 
 
 def test_ex05_input():
-    print_title("Test ➜ Texte fourni en input()")
+    print_title("Test ➜ Ex05 Texte fourni en input()")
 
     text = "Python 3.0"
     result = subprocess.run(
-        ['python3', 'ex05/tester.py'],
+        ['python3', 'ex05/building.py'],
         input=text,
         capture_output=True, text=True
     )
@@ -34,10 +34,10 @@ def test_ex05_input():
 
 
 def test_ex05_multiple_arguments():
-    print_title("Test ➜ Trop d'arguments fournis")
+    print_title("Test ➜ Ex05 Trop d'arguments fournis")
 
     result = subprocess.run(
-        ['python3', 'ex05/tester.py', 'arg1', 'arg2'],
+        ['python3', 'ex05/building.py', 'arg1', 'arg2'],
         capture_output=True, text=True
     )
 

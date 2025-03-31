@@ -7,7 +7,7 @@ def test_ft_filter():
     """
     Teste la fonction personnalisée ft_filter.
     """
-    print_title("Test ➜ ft_filter()")
+    print_title("Test ➜ Ex06 ft_filter()")
 
     # Cas 1 : Filtrer les nombres pairs
     input_data = [1, 2, 3, 4, 5, 6]
@@ -42,7 +42,7 @@ def test_filterstring():
     """
     Teste le programme filterstring.py dans différents cas.
     """
-    print_title("Test ➜ filterstring.py")
+    print_title("Test ➜ Ex06 filterstring.py")
 
     # Cas 1 : Texte valide, filtre sur longueur > 4
     input_string = 'Hello the World'

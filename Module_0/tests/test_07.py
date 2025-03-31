@@ -6,7 +6,7 @@ def test_encode_to_morse():
     """
     Teste la fonction encode_to_morse avec différents cas d'utilisation.
     """
-    print_title("Test ➜ sos.py (encode_to_morse)")
+    print_title("Test ➜ Ex07 sos.py (encode_to_morse)")
 
     # Cas 1 : texte simple
     input_text = "sos"

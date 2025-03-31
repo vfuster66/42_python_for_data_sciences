@@ -35,7 +35,7 @@ def test_ft_tqdm_vs_tqdm():
     Seul test de la barre de progression - teste à la fois ft_tqdm et tqdm.
     Ce test combine toutes les vérifications nécessaires.
     """
-    print_title("=== EX08 ➜ Comparatif ft_tqdm VS tqdm ===")
+    print_title("=== Test ➜ Ex08 Comparatif ft_tqdm VS tqdm ===")
 
     # Test de ft_tqdm
     print_title("=== Test ➜ ft_tqdm (EX08) ===")

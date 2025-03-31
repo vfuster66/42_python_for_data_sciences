@@ -3,7 +3,7 @@ from printer import print_title,  print_success, print_failure
 
 
 def test_count_existing_item():
-    print_title("Test ➜ count_in_list : item existant")
+    print_title("Test ➜ Ex09 count_in_list : item existant")
     lst = ["apple", "banana", "apple", "orange"]
     item = "apple"
     expected = 2
@@ -17,7 +17,7 @@ def test_count_existing_item():
 
 
 def test_count_missing_item():
-    print_title("Test ➜ count_in_list : item absent")
+    print_title("Test ➜ Ex09 count_in_list : item absent")
     lst = ["apple", "banana", "apple", "orange"]
     item = "pear"
     expected = 0
@@ -31,7 +31,7 @@ def test_count_missing_item():
 
 
 def test_non_iterable_input():
-    print_title("Test ➜ count_in_list : input non itérable")
+    print_title("Test ➜ Ex09 count_in_list : input non itérable")
     lst = None
     item = "apple"
 
