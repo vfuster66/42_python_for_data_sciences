@@ -49,6 +49,10 @@ if __name__ == "__main__":
 - ➡️ **Données** : `population_total.csv`
 - 🔧 **Description** : Compare l’évolution de la population de ton pays avec un autre.
 - 📈 **Visualisation** : Graphique `matplotlib` des populations comparées sur les années.
+- **Lancement** :
+```bash
+make ex02 country1=France country2=Germany
+```
 
 ---
 

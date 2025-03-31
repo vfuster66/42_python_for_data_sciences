@@ -8,6 +8,9 @@ DOCKER_RUN=docker run -t --rm -v $(PWD):/Module_2 -w /Module_2 -e PYTHONPATH=/Mo
 build:
 	docker build -t $(IMAGE_NAME) .
 
+bash:
+	@docker run -it --rm -v $(PWD):/Module_2 -w /Module_2 -e PYTHONPATH=/Module_2 $(IMAGE_NAME) /bin/bash
+
 # Exécuter les scripts principaux
 ex00:
 	@$(DOCKER_RUN) python3 ex00/tester.py

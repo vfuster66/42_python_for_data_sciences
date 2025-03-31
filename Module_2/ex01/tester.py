@@ -1,24 +1,20 @@
 import argparse
 from aff_life import display_life_expectancy
 from ex00.load_csv import load
-from printer import print_title, print_failure
 
 
 def main():
-    print_title("Ex01 ➜ Afficher l'espérance de vie par pays")
-
     parser = argparse.ArgumentParser(
-        description="Afficher la life expectancy d'un pays"
+        description="Afficher l'espérance de vie d'un pays à partir d'un fichier CSV."
     )
     parser.add_argument("country", help="Nom du pays à afficher (ex: France)")
     args = parser.parse_args()
 
     data = load("ex01/life_expectancy_years.csv")
-    if data is None:
-        print_failure("Erreur lors du chargement des données.")
-        return
-
-    display_life_expectancy(args.country, data)
+    if data is not None:
+        display_life_expectancy(args.country, data)
+    else:
+        print("❌ Erreur de chargement des données.")
 
 
 if __name__ == "__main__":

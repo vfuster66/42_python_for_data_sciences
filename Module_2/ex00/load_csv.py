@@ -1,8 +1,8 @@
 import pandas as pd
-from printer import print_info, print_failure
+from typing import Optional
 
 
-def load(path: str):
+def load(path: str) -> Optional[pd.DataFrame]:
     """
     Charge un fichier CSV, affiche ses dimensions, et retourne le dataset.
 
@@ -10,19 +10,16 @@ def load(path: str):
         path (str): Chemin vers le fichier CSV.
 
     Returns:
-        pd.DataFrame | None
+        Optional[pd.DataFrame]: Le DataFrame chargé ou None en cas d'erreur.
     """
     try:
         df = pd.read_csv(path)
-        print_info(f"Le dataset contient {df.shape[0]} lignes "
-                   f"et {df.shape[1]} colonnes.")
+        print(f"Loading dataset of dimensions {df.shape}")
         return df
     except FileNotFoundError:
-        print_failure(f"Erreur : Le fichier '{path}' est introuvable.")
-        return None
+        print(f"❌ Erreur : Le fichier '{path}' est introuvable.")
     except pd.errors.EmptyDataError:
-        print_failure(f"Erreur : Le fichier '{path}' est vide ou mal formaté.")
-        return None
+        print(f"❌ Erreur : Le fichier '{path}' est vide ou mal formaté.")
     except Exception as e:
-        print_failure(f"Une erreur est survenue : {e}")
-        return None
+        print(f"❌ Une erreur est survenue : {e}")
+    return None

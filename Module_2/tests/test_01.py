@@ -20,10 +20,11 @@ class TestAffLife(unittest.TestCase):
         country = "France"
         display_life_expectancy(country, self.data)
 
-        filename = f"life_expectancy_{country}.png"
+        filename = os.path.join("ex01", f"life_expectancy_{country}.png")
         self.assertTrue(os.path.exists(filename))
-        print_success(f"Graphique créé : {filename}")
         os.remove(filename)
+        print_success("✅ Graphique France généré et supprimé ✅")
+
 
     def test_invalid_country(self):
         print_title("Test ➜ Pays inexistant (Narnia)")
