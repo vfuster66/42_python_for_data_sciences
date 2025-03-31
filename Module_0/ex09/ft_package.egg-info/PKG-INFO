@@ -1,4 +1,4 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: ft_package
 Version: 0.0.1
 Summary: A sample test package
@@ -8,6 +8,7 @@ Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License
 Description-Content-Type: text/markdown
 License-File: LICENSE
+Dynamic: license-file
 
 # ft_package
 

@@ -1,83 +1,54 @@
 import time
-import sys
+import shutil
 
-
-def ft_tqdm(lst):
+def format_time(seconds):
     """
-    Reproduction de la fonction tqdm avec un yield.
-    Affiche une barre de progression lors de l'itération.
+    Formate le temps donné en secondes au format MM:SS.
+    Args:
+        seconds (float): Temps en secondes.
+    Returns:
+        str: Temps formaté au format MM:SS.
+    """
+    m, s = divmod(seconds, 60)
+    return f"{int(m):02d}:{int(s):02d}"
+
+def ft_tqdm(lst: range) -> None:
+    """
+    Simule une barre de progression pour l'itération à travers une plage.
+    Args:
+        lst (range): La plage à parcourir.
+    Yields:
+        Any: L'élément actuel de la plage.
+    
+    yield est un mot-clé en Python utilisé dans le contexte de création de générateurs.
+    Les générateurs sont un moyen de créer des itérateurs, qui sont des objets utilisés pour
+    itérer sur une séquence de valeurs sans avoir à stocker toutes ces
+    valeurs en mémoire à la fois. Au lieu de générer toutes les valeurs et de les renvoyer
+    en une seule fois, un générateur produit une valeur à la fois chaque fois que
+    l'instruction yield est rencontrée.
     """
     total = len(lst)
     start_time = time.time()
-    first_item = True
-    bar_length = 6
-
-    sys.stdout.flush()
-
-    for index, item in enumerate(lst, 1):
-        # Calculer le pourcentage de progression
-        progress = index / total * 100
-
+    terminal_width = shutil.get_terminal_size().columns - 30
+    progress_bar_width = terminal_width - 10
+    
+    for i, item in enumerate(lst, start=1):
+        progress = int(i / total * progress_bar_width)
         elapsed_time = time.time() - start_time
-        speed = index / elapsed_time if elapsed_time > 0 else 0
-
-        # Calculer le temps restant estimé
-        remaining_time = (total - index) / speed if speed > 0 else 0
-
-        # Formater le temps écoulé
-        elapsed_min, elapsed_sec = divmod(int(elapsed_time), 60)
-        elapsed_hour, elapsed_min = divmod(elapsed_min, 60)
-
-        if elapsed_hour > 0:
-            elapsed_str = (
-                f"{elapsed_hour:d}:{elapsed_min:02d}:{elapsed_sec:02d}"
-            )
-        else:
-            elapsed_str = f"{elapsed_min:02d}:{elapsed_sec:02d}"
-
-        # Formater le temps restant
-        remain_min, remain_sec = divmod(int(remaining_time), 60)
-        remain_hour, remain_min = divmod(remain_min, 60)
-
-        if remain_hour > 0:
-            remain_str = f"{remain_hour:d}:{remain_min:02d}:{remain_sec:02d}"
-        else:
-            remain_str = f"{remain_min:02d}:{remain_sec:02d}"
-
-        # Créer la barre de progression avec 6 caractères de bloc plein à 100%
-        filled_length = int(bar_length * progress / 100)
-        bar = '█' * filled_length + ' ' * (bar_length - filled_length)
-
-        if first_item:
-            first_item = False
-            # Sauter la première impression
-            pass
-        else:
-            # Construire la chaîne complète
-            line = (
-                f"{progress:3.0f}%|{bar}| {index}/{total} "
-                f"[{elapsed_str}<{remain_str}, {speed:.2f}it/s]"
-            )
-            # Effacer la ligne précédente et afficher la nouvelle
-            print(f"\r{line}", end="", flush=True)
-
+        speed = i / elapsed_time
+        eta = (total - i) / speed
+        elapsed_formatted = format_time(elapsed_time)
+        eta_formatted = format_time(eta)
+        progress_bar = f"|{'█' * progress:<{progress_bar_width}}|"
+        progress_percentage = progress * 100 // progress_bar_width
+        progress_info = f"{progress_percentage}%{progress_bar} {i}/{total}"
+        time_info = f"[{elapsed_formatted}<{eta_formatted}, {speed:.2f}it/s]"
+        print(f"\r{progress_info} {time_info}", end="", flush=True)
         yield item
 
-    # Mise à jour finale à 100%
-    elapsed_time = time.time() - start_time
-    speed = total / elapsed_time if elapsed_time > 0 else 0
+def main():
+    for _ in ft_tqdm(range(0, 333)):
+        pass
 
-    # Formater le temps écoulé final
-    elapsed_min, elapsed_sec = divmod(int(elapsed_time), 60)
-    elapsed_hour, elapsed_min = divmod(elapsed_min, 60)
-
-    if elapsed_hour > 0:
-        elapsed_str = f"{elapsed_hour:d}:{elapsed_min:02d}:{elapsed_sec:02d}"
-    else:
-        elapsed_str = f"{elapsed_min:02d}:{elapsed_sec:02d}"
-
-    final_line = (
-        f"100%|{'█' * bar_length}| {total}/{total} "
-        f"[{elapsed_str}<00:00, {speed:.2f}it/s]"
-    )
-    print(f"\r{final_line}", end="\n", flush=True)
+if __name__ == "__main__":
+    main()

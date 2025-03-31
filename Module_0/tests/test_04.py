@@ -7,7 +7,7 @@ class TestEx04(unittest.TestCase):
 
     def run_script(self, *args):
         """Helper pour exécuter tester.py avec arguments"""
-        cmd = ['python3', 'ex04/tester.py'] + list(args)
+        cmd = ['python3', 'ex04/whatis.py'] + list(args)
         result = subprocess.run(cmd, capture_output=True, text=True)
         return result.stdout.strip()
 
@@ -38,10 +38,9 @@ class TestEx04(unittest.TestCase):
     def test_no_argument(self):
         print_title("Test ➜ Aucun argument fourni")
         output = self.run_script()
-
-        print_info(f"🔎 Résultat obtenu : {output}")
-        self.assertIn("Aucun argument fourni", output)
-        print_success("✅ ✅ Aucun argument OK")
+        print_info(f"🔎 Résultat obtenu : {output!r}")
+        self.assertEqual(output.strip(), "")
+        print_success("✅ ✅ Aucun argument OK (aucune sortie attendue)")
 
     def test_multiple_arguments(self):
         print_title("Test ➜ Trop d'arguments fournis")

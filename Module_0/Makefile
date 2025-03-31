@@ -8,26 +8,36 @@ DOCKER_RUN=docker run -t --rm -v $(PWD):/Module_0 -w /Module_0 -e PYTHONPATH=/Mo
 build:
 	docker build -t $(IMAGE_NAME) .
 
+bash:
+	@docker run -it --rm -v $(PWD):/Module_0 -w /Module_0 -e PYTHONPATH=/Module_0 $(IMAGE_NAME) /bin/bash
+
 # Exécuter les scripts principaux
 ex00:
-	@$(DOCKER_RUN) python3 ex00/tester.py
+	@echo "Running: python3 ex00/tester.py | cat -e"
+	@$(DOCKER_RUN) python3 ex00/tester.py | sed 's/\r//g' | cat -e
 
 ex01:
-	@$(DOCKER_RUN) python3 ex01/tester.py
+	@echo "Running: python3 ex01/tester.py | cat -e"
+	@$(DOCKER_RUN) python3 ex01/tester.py | sed 's/\r//g' | cat -e
 
 ex02:
-	@$(DOCKER_RUN) python3 ex02/tester.py
+	@echo "Running: python3 ex02/tester.py | cat -e"
+	@$(DOCKER_RUN) python3 ex02/tester.py | sed 's/\r//g' | cat -e
+
+ex02_empty:
+	@echo "Running: python3 ex02/find_ft_type.py | cat -e"
+	@$(DOCKER_RUN) python3 ex02/find_ft_type.py | sed 's/\r//g' | cat -e
 
 ex03:
-	@$(DOCKER_RUN) python3 ex03/tester.py
+	@echo "Running: python3 ex03/tester.py | cat -e"
+	@$(DOCKER_RUN) python3 ex03/tester.py | sed 's/\r//g' | cat -e
+
+ex03_empty:
+	@echo "Running: python3 ex03/NULL_not_found.py | cat -e"
+	@$(DOCKER_RUN) python3 ex03/NULL_not_found.py | sed 's/\r//g' | cat -e
 
 ex04:
-	@if [ -z "$(number)" ]; then \
-		echo "❌ ❌ Aucun argument fourni !"; \
-		echo "🔎 👉 Exemple : make ex04 number=14"; \
-	else \
-		$(DOCKER_RUN) python3 ex04/tester.py $(number); \
-	fi
+	@$(DOCKER_RUN) python3 ex04/whatis.py $(number);
 
 ex05:
 	@if [ -z "$(text)" ]; then \
@@ -57,7 +67,7 @@ ex08:
 	@$(DOCKER_RUN) python3 ex08/tester.py
 
 ex09_build:
-	@$(DOCKER_RUN) sh -c "pip install build && python3 -m build && pip install ./dist/ft_package-0.0.1.tar.gz"
+	@$(DOCKER_RUN) sh -c "pip install build && cd ex09 && python3 -m build && pip install ./dist/ft_package-0.0.1.tar.gz"
 
 ex09:
 	@$(DOCKER_RUN) python3 ex09/tester.py

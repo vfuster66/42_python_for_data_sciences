@@ -101,7 +101,7 @@ Sous **Bash**, certains caractères comme `!` ou `$` sont interprétés par le s
 ```
 ft_package/
   __init__.py
-  count.py
+  count_in_list.py
 LICENSE
 README.md
 pyproject.toml

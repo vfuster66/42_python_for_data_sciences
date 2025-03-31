@@ -7,7 +7,7 @@ def test_ex05_argument():
 
     text = "Python 3.0, released in 2008."
     result = subprocess.run(
-        ['python3', 'ex05/tester.py', text],
+        ['python3', 'ex05/building.py', text],
         capture_output=True, text=True
     )
 

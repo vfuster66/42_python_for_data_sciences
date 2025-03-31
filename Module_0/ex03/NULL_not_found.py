@@ -1,22 +1,21 @@
-from printer import print_success, print_failure
-
-
-def NULL_not_found(obj: any) -> int:
+# NULL_not_found.py
+def NULL_not_found(object: any) -> int:
     """
-    Vérifie si l'objet est un des types 'null' et affiche son type.
-    Retourne 0 si trouvé, 1 sinon.
+    Affiche le type de l'objet passé en paramètre et retourne 0 si tout va bien.
+    Retourne 1 en cas d'erreur.
     """
-    if obj is None:
-        print_success(f"Nothing: {obj} {type(obj)}")
-    elif isinstance(obj, float) and obj != obj:
-        print_success(f"Cheese: {obj} {type(obj)}")
-    elif obj is False:
-        print_success(f"Fake: {obj} {type(obj)}")
-    elif obj == 0:
-        print_success(f"Zero: {obj} {type(obj)}")
-    elif obj == '':
-        print_success(f"Empty: {type(obj)}")
+    if object is None:
+        print(f"Nothing: {object} <class 'NoneType'>")
+    elif isinstance(object, float) and (object != object):  # Vérifie NaN
+        print(f"Cheese: {object} <class 'float'>")
+    elif isinstance(object, int) and object is not False:  # Exclut False
+        print(f"Zero: {object} <class 'int'>")
+    elif isinstance(object, str) and object == '':  # Exclut les chaînes non vides
+        print(f"Empty: {object} <class 'str'>")
+    elif isinstance(object, bool):
+        print(f"Fake: {object} <class 'bool'>")
     else:
-        print_failure("Type not Found")
+        print("Type not Found")
         return 1
+    
     return 0
