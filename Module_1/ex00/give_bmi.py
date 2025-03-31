@@ -1,45 +1,28 @@
 import numpy as np
-from printer import print_title, print_info, print_success, print_failure
+from typing import Union
 
 
-def give_bmi(height: list[int | float],
-             weight: list[int | float]) -> list[float]:
-    """
-    Calcule l'IMC (Indice de Masse Corporelle)
-    pour une liste de tailles (mètres) et de poids (kg).
-    Retourne une liste d'IMC.
-    """
-    print_title("Calcul BMI")
-    print_info(f"Tailles : {height}")
-    print_info(f"Poids : {weight}")
-
+def give_bmi(height: list[Union[int, float]],
+             weight: list[Union[int, float]]) -> list[Union[int, float]]:
     if len(height) != len(weight):
-        msg = "Les listes 'height' et 'weight' doivent avoir la même taille."
-        print_failure(msg)
-        raise ValueError(msg)
+        raise ValueError("Lists must be of same length")
 
-    try:
-        height_arr = np.array(height, dtype=float)
-        weight_arr = np.array(weight, dtype=float)
-    except ValueError as e:
-        print_failure(f"Erreur de conversion des entrées : {e}")
-        raise
+    for h in height:
+        if not isinstance(h, (int, float)):
+            raise TypeError("Height list contains non-numeric value")
+    for w in weight:
+        if not isinstance(w, (int, float)):
+            raise TypeError("Weight list contains non-numeric value")
 
-    bmi = weight_arr / (height_arr ** 2)
-    print_success(f"BMI calculé : {bmi.tolist()}")
-    return bmi.tolist()
+    h_arr = np.array(height, dtype=float)
+    w_arr = np.array(weight, dtype=float)
+    return (w_arr / (h_arr ** 2)).tolist()
 
 
-def apply_limit(bmi: list[float], limit: float) -> list[bool]:
-    """
-    Retourne une liste de booléens où True
-    signifie que l'IMC est supérieur à la limite.
-    """
-    print_title(f"Application de la limite : {limit}")
-    print_info(f"Liste des BMI : {bmi}")
+def apply_limit(bmi: list[Union[int, float]], limit: int) -> list[bool]:
+    for b in bmi:
+        if not isinstance(b, (int, float)):
+            raise TypeError("BMI list contains non-numeric value")
 
-    bmi_arr = np.array(bmi)
-    result = (bmi_arr > limit).tolist()
+    return (np.array(bmi) > limit).tolist()
 
-    print_success(f"Résultat après application de la limite : {result}")
-    return result

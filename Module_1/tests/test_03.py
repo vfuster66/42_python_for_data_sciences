@@ -13,17 +13,17 @@ class TestFtZoom(unittest.TestCase):
         print_info(f"🔎 {self._testMethodName} - Fin du test\n")
 
     def test_zoom_image_success(self):
-        print_title("Test ➜ Zoom image valide")
+        print_title("Test ➜ Ex03 Zoom image valide")
 
         image_path = "ex03/animal.jpeg"
         zoomed_img = ft_zoom(image_path)
 
         self.assertIsNotNone(zoomed_img)
-        self.assertEqual(zoomed_img.shape, (200, 200, 3))
+        self.assertEqual(zoomed_img.shape, (400, 400, 1))
         print_success("✅ Image zoomée avec succès !")
 
     def test_image_not_found(self):
-        print_title("Test ➜ Image inexistante")
+        print_title("Test ➜ Ex03 Image inexistante")
 
         image_path = "ex03/nonexistent.jpeg"
         zoomed_img = ft_zoom(image_path)
@@ -32,7 +32,7 @@ class TestFtZoom(unittest.TestCase):
         print_success("✅ Image inexistante gérée correctement")
 
     def test_invalid_image_format(self):
-        print_title("Test ➜ Format de fichier non image")
+        print_title("Test ➜ Ex03 Format de fichier non image")
 
         fake_file = "ex03/fake.txt"
         with open(fake_file, "w") as f:

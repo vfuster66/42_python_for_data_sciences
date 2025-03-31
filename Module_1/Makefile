@@ -8,6 +8,9 @@ DOCKER_RUN=docker run -t --rm -v $(PWD):/Module_1 -w /Module_1 -e PYTHONPATH=/Mo
 build:
 	docker build -t $(IMAGE_NAME) .
 
+bash:
+	@docker run -it --rm -v $(PWD):/Module_1 -w /Module_1 -e PYTHONPATH=/Module_1 $(IMAGE_NAME) /bin/bash
+
 # Exécuter les scripts principaux
 ex00:
 	@$(DOCKER_RUN) python3 ex00/tester.py
@@ -16,16 +19,16 @@ ex01:
 	@$(DOCKER_RUN) python3 ex01/tester.py
 
 ex02:
-	@$(DOCKER_RUN) python3 ex02/tester.py image=${image}
+	@$(DOCKER_RUN) python3 ex02/tester.py ex02/landscape.jpg
 
 ex03:
-	@$(DOCKER_RUN) python3 ex03/tester.py image=$(image)
+	@$(DOCKER_RUN) python3 ex03/zoom.py
 
 ex04:
-	@$(DOCKER_RUN) python3 ex04/tester.py image=$(image)
+	@$(DOCKER_RUN) python3 ex04/tester.py
 
 ex05:
-	@$(DOCKER_RUN) python3 ex05/tester.py image=$(image)
+	@$(DOCKER_RUN) python3 ex05/tester.py
 
 # Tests pytest
 test: test_00 test_01 test_02 test_03 test_04 test_05

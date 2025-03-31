@@ -6,7 +6,7 @@ from printer import print_title, print_info, print_success
 class TestEx00(unittest.TestCase):
 
     def setUp(self):
-        print_title(f"Test ➜ {self._testMethodName} - Début")
+        print_title(f"Test ➜ Ex00 {self._testMethodName} - Début")
 
     def tearDown(self):
         print_info(f"🔎 {self._testMethodName} - Fin\n")
@@ -16,7 +16,7 @@ class TestEx00(unittest.TestCase):
         weight = [165.3, 38.4]
         expected = [22.507863455018317, 29.0359168241966]
 
-        print_info("Test ➜ Normal BMI calculation")
+        print_info("Test ➜ Ex00 Normal BMI calculation")
         result = give_bmi(height, weight)
 
         self.assertAlmostEqual(result[0], expected[0], places=5)
@@ -28,7 +28,7 @@ class TestEx00(unittest.TestCase):
         limit = 26
         expected = [False, True]
 
-        print_info("Test ➜ apply_limit")
+        print_info("Test ➜ Ex00 apply_limit")
         result = apply_limit(bmi, limit)
 
         self.assertEqual(result, expected)
@@ -38,7 +38,7 @@ class TestEx00(unittest.TestCase):
         height = [2.71, 1.15]
         weight = [165.3]
 
-        print_info("Test ➜ Different list lengths")
+        print_info("Test ➜ EX00 Different list lengths")
         with self.assertRaises(ValueError):
             give_bmi(height, weight)
         print_success("✅ ValueError détectée avec tailles différentes")
@@ -47,8 +47,8 @@ class TestEx00(unittest.TestCase):
         height = ["two", 1.15]
         weight = [165.3, 38.4]
 
-        print_info("Test ➜ Invalid input types")
-        with self.assertRaises(ValueError):
+        print_info("Test ➜ Ex00 Invalid input types")
+        with self.assertRaises(TypeError):
             give_bmi(height, weight)
         print_success("✅ ValueError détectée avec entrée invalide")
 
@@ -57,7 +57,7 @@ class TestEx00(unittest.TestCase):
         limit = 26
         expected = [False, False]
 
-        print_info("Test ➜ apply_limit sans dépassement")
+        print_info("Test ➜ Ex00 apply_limit sans dépassement")
         result = apply_limit(bmi, limit)
 
         self.assertEqual(result, expected)
@@ -68,7 +68,7 @@ class TestEx00(unittest.TestCase):
         limit = 26
         expected = [True, True]
 
-        print_info("Test ➜ apply_limit tous dépassent")
+        print_info("Test ➜ Ex00 apply_limit tous dépassent")
         result = apply_limit(bmi, limit)
 
         self.assertEqual(result, expected)

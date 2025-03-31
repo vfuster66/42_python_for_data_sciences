@@ -1,30 +1,34 @@
-from printer import print_title, print_info, print_success, print_failure
-
-
 def slice_me(family: list, start: int, end: int) -> list:
     """
     Découpe un tableau 2D en fonction des indices start et end.
     Imprime la forme initiale et la forme après découpage.
     """
-    print_title("Découpe du tableau 2D")
 
-    # Vérification si la liste est un tableau 2D
-    if not all(isinstance(row, list) for row in family):
-        print_failure("❌ Tous les éléments doivent être des listes.")
-        raise ValueError("Tous les éléments doivent être des listes.")
+    # Vérification que c'est bien une liste de listes
+    if not isinstance(family, list) or not all(isinstance(row, list) for row in family):
+        print("❌ Le tableau doit être une liste de listes.")
+        raise ValueError("Le tableau doit être une liste de listes.")
 
-    # Récupérer la taille initiale du tableau
-    original_shape = (len(family), len(family[0]) if family else 0)
-    print_info(f"My shape is : {original_shape}")
+    # Vérification que chaque ligne a la même longueur
+    row_lengths = [len(row) for row in family]
+    if len(set(row_lengths)) != 1:
+        print("❌ Toutes les lignes doivent avoir la même longueur.")
+        raise ValueError("Toutes les lignes doivent avoir la même longueur.")
 
-    # Découper le tableau 2D
-    sliced_family = family[start:end]
+    # Vérification des types de start/end
+    if not isinstance(start, int) or not isinstance(end, int):
+        print("❌ Les indices start et end doivent être des entiers.")
+        raise TypeError("Les indices start et end doivent être des entiers.")
 
-    # Récupérer la nouvelle taille du tableau
-    new_shape = (len(sliced_family), len(sliced_family[0]) if sliced_family
-                 else 0)
-    print_info(f"My new shape is : {new_shape}")
+    # Affichage de la forme initiale
+    original_shape = (len(family), row_lengths[0])
+    print(f"My shape is : {original_shape}")
 
-    print_success(f"✅ Découpe réussie : {sliced_family}")
+    # Découpage
+    sliced = family[start:end]
 
-    return sliced_family
+    # Affichage de la nouvelle forme
+    new_shape = (len(sliced), row_lengths[0] if sliced else 0)
+    print(f"My new shape is : {new_shape}")
+
+    return sliced

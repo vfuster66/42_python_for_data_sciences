@@ -1,6 +1,5 @@
 from PIL import Image
 import numpy as np
-from printer import print_title, print_info, print_success, print_failure
 
 
 def ft_load(path: str) -> np.ndarray:
@@ -10,24 +9,21 @@ def ft_load(path: str) -> np.ndarray:
     Gère les erreurs si le fichier n'est pas trouvable
     ou si le format n'est pas supporté.
     """
-    print_title(f"Chargement de l'image : {path}")
 
     try:
         img = Image.open(path)
-        print_info(f"Format de l'image : {img.format}")
 
         img = img.convert("RGB")
         img_array = np.array(img)
 
-        print_success("✅ Image convertie en RGB avec succès")
-        print_info(f"Dimensions de l'image : {img_array.shape}")
+        print(f"The shape of image is: {img_array.shape}")
 
         return img_array
 
     except FileNotFoundError:
-        print_failure(f"❌ Erreur : L'image '{path}' n'a pas été trouvée.")
+        print(f"❌ Erreur : L'image '{path}' n'a pas été trouvée.")
         return None
     except IOError as e:
-        print_failure(f"❌ Erreur : Impossible de lire le fichier '{path}'. "
-                      f"{e}")
+        print(f"❌ Erreur : Impossible de lire le fichier '{path}'. {e}")
         return None
+

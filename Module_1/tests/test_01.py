@@ -12,7 +12,7 @@ class TestSliceMe(unittest.TestCase):
         print_info(f"🔎 {self._testMethodName} - Fin du test")
 
     def test_slice_normal(self):
-        print_title("Test ➜ Découpage normal")
+        print_title("Test ➜ Ex01 Découpage normal")
         family = [
             [1.80, 78.4],
             [2.15, 102.7],
@@ -28,7 +28,7 @@ class TestSliceMe(unittest.TestCase):
         self.assertEqual(result, expected_result)
 
     def test_slice_negative_index(self):
-        print_title("Test ➜ Découpage avec index négatif")
+        print_title("Test ➜ Ex01 Découpage avec index négatif")
         family = [
             [1.80, 78.4],
             [2.15, 102.7],
@@ -43,7 +43,7 @@ class TestSliceMe(unittest.TestCase):
         self.assertEqual(result, expected_result)
 
     def test_slice_out_of_bounds(self):
-        print_title("Test ➜ Découpage out of bounds")
+        print_title("Test ➜ Ex01 Découpage out of bounds")
         family = [
             [1.80, 78.4],
             [2.15, 102.7],
@@ -60,7 +60,7 @@ class TestSliceMe(unittest.TestCase):
         self.assertEqual(result, expected_result)
 
     def test_invalid_structure(self):
-        print_title("Test ➜ Structure invalide")
+        print_title("Test ➜ Ex01 Structure invalide")
         family = [
             [1.80, 78.4],
             2.15,  # Élément non valide

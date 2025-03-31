@@ -1,62 +1,51 @@
-# ex04/rotate.py
-
+import os
 import numpy as np
 import matplotlib.pyplot as plt
-from PIL import UnidentifiedImageError
 from ex02.load_image import ft_load
-from printer import print_title, print_info, print_success, print_failure
 
-
-def ft_rotate(path: str) -> np.ndarray | None:
-    """
-    Charge une image, effectue un découpage carré, transpose et sauvegarde.
-    """
-    print_title(f"Rotation de l'image : {path}")
-
+def save_image(image: np.ndarray, filename: str):
+    """Sauvegarde l'image transposée dans le dossier ex04."""
     try:
-        img_array = ft_load(path)
-        if img_array is None:
-            print_failure("❌ Impossible de charger l'image.")
-            return None
-
-        print_info(f"Image chargée : {img_array.shape}")
-
-        # Découpage carré
-        center_x, center_y = img_array.shape[1] // 2, img_array.shape[0] // 2
-        square_size = 400
-        square_img_array = img_array[
-            center_y - square_size // 2:center_y + square_size // 2,
-            center_x - square_size // 2:center_x + square_size // 2]
-
-        print_info(f"Zone découpée : {square_img_array.shape}")
-
-        # Transposer manuellement
-        transposed_img_array = np.transpose(square_img_array, axes=(1, 0, 2))
-        print_info(f"Après transposition : {transposed_img_array.shape}")
-
-        # Sauvegarder l'image
-        fig, ax = plt.subplots()
-        im = ax.imshow(transposed_img_array)
-        ax.set_title("Image transposée")
-        ax.set_xlabel("Axe X")
-        ax.set_ylabel("Axe Y")
-        plt.grid(True)
-        plt.colorbar(im)
-
-        output_file = "transposed_image_with_axes.png"
-        fig.savefig(output_file)
-        plt.close(fig)
-
-        print_success(f"✅ Image transposée sauvegardée sous : {output_file}")
-
-        return transposed_img_array
-
-    except FileNotFoundError:
-        print_failure(f"❌ Le fichier '{path}' n'a pas été trouvé.")
-    except UnidentifiedImageError:
-        print_failure(
-            f"❌ Le fichier '{path}' n'est pas un format d'image valide.")
+        # Utiliser un chemin relatif simple, comme dans ex05
+        output_path = f"ex04/{filename}"
+        plt.imsave(output_path, image, cmap='gray')
+        print(f"💾 Image enregistrée : {output_path}")
     except Exception as e:
-        print_failure(f"❌ Erreur inattendue : {e}")
+        print(f"❌ Erreur lors de la sauvegarde de l'image : {e}")
 
-    return None
+def ft_rotate() -> np.ndarray | None:
+    """
+    Charge une image, découpe une zone carrée, transpose manuellement
+    et sauvegarde l'image. Affiche la forme et les pixels avant/après rotation.
+    """
+    # Utiliser un chemin relatif simple comme dans ex05
+    path = "ex04/animal.jpeg"
+    
+    img_array = ft_load(path)
+    if img_array is None:
+        print("❌ Impossible de charger l'image.")
+        return None
+    
+    print(f"The shape of image is: {img_array.shape}")
+    print(img_array)
+    
+    # Extraire un carré 400x400 centré, et ne garder qu'un seul canal (R)
+    center_y, center_x = img_array.shape[0] // 2, img_array.shape[1] // 2
+    size = 400
+    square = img_array[
+        center_y - size // 2:center_y + size // 2,
+        center_x - size // 2:center_x + size // 2,
+        0:1
+    ] # shape = (400, 400, 1)
+    
+    print(f"New shape after Transpose: {square.shape[:2]}")
+    
+    # Transposition manuelle (on supprime la dernière dimension)
+    channel = square[:, :, 0] # shape = (400, 400)
+    transposed = np.array([[channel[j][i] for j in range(channel.shape[0])]
+                          for i in range(channel.shape[1])])
+    
+    print(transposed)
+    save_image(transposed, "transposed_image.png")
+    
+    return transposed

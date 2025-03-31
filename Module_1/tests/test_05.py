@@ -15,13 +15,13 @@ class TestPimpImage(unittest.TestCase):
         print_info(f"🔎 {self._testMethodName} - Fin du test\n")
 
     def test_image_not_found(self):
-        print_title("Test ➜ Image inexistante")
+        print_title("Test ➜ Ex05 Image inexistante")
         array = ft_load("ex05/does_not_exist.jpg")
         self.assertIsNone(array)
         print_success("✅ ✅ Image inexistante gérée correctement")
 
     def test_invalid_file(self):
-        print_title("Test ➜ Fichier non image")
+        print_title("Test ➜ Ex05 Fichier non image")
 
         fake_file = "ex05/fake.txt"
         with open(fake_file, "w") as f:
@@ -34,7 +34,7 @@ class TestPimpImage(unittest.TestCase):
         os.remove(fake_file)
 
     def test_valid_filters(self):
-        print_title("Test ➜ Filtres sur image valide")
+        print_title("Test ➜ Ex05 Filtres sur image valide")
 
         image_path = "ex05/landscape.jpg"
         array = ft_load(image_path)

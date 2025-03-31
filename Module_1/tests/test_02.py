@@ -13,7 +13,7 @@ class TestFtLoad(unittest.TestCase):
         print_info(f"🔎 {self._testMethodName} - Fin du test\n")
 
     def test_load_image_success(self):
-        print_title("Test ➜ Chargement image valide")
+        print_title("Test ➜ Ex02 Chargement image valide")
         image_path = "ex02/landscape.jpg"
 
         img_array = ft_load(image_path)
@@ -28,7 +28,7 @@ class TestFtLoad(unittest.TestCase):
         print_success(f"✅ Image chargée avec succès : {img_array.shape}")
 
     def test_image_not_found(self):
-        print_title("Test ➜ Image inexistante")
+        print_title("Test ➜ Ex02 Image inexistante")
 
         invalid_image_path = "ex02/nonexistent.jpg"
         img_array = ft_load(invalid_image_path)
@@ -39,7 +39,7 @@ class TestFtLoad(unittest.TestCase):
         print_success("✅ Image inexistante gérée correctement.")
 
     def test_invalid_image_format(self):
-        print_title("Test ➜ Fichier format invalide")
+        print_title("Test ➜ Ex02 Fichier format invalide")
 
         invalid_file = "ex02/invalid_image.txt"
 
