@@ -5,7 +5,9 @@ from ex00.load_csv import load
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Afficher l'espérance de vie d'un pays à partir d'un fichier CSV."
+        description=(
+            "Afficher l'espérance de vie d'un pays à partir d'un fichier CSV."
+        )
     )
     parser.add_argument("country", help="Nom du pays à afficher (ex: France)")
     args = parser.parse_args()

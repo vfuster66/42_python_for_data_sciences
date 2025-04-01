@@ -25,7 +25,6 @@ class TestAffLife(unittest.TestCase):
         os.remove(filename)
         print_success("✅ Graphique France généré et supprimé ✅")
 
-
     def test_invalid_country(self):
         print_title("Test ➜ Pays inexistant (Narnia)")
         country = "Narnia"

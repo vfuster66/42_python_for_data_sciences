@@ -16,7 +16,8 @@ def preprocess_population(pop_str):
 
 
 def plot_population(country1: str, country2: str, data: pd.DataFrame):
-    """Affiche un graphique comparant la population de deux pays dans le temps."""
+    """Affiche un graphique comparant la population de deux pays
+    dans le temps."""
     if country1 not in data['country'].values:
         print(f"❌ Le pays '{country1}' n'est pas présent dans le dataset.")
         return
@@ -29,8 +30,14 @@ def plot_population(country1: str, country2: str, data: pd.DataFrame):
     country2_data = data[data['country'] == country2].iloc[:, 1:]
 
     # Conversion en float
-    country1_pop = [preprocess_population(p) for p in country1_data.values.flatten()]
-    country2_pop = [preprocess_population(p) for p in country2_data.values.flatten()]
+    country1_pop = [
+        preprocess_population(p)
+        for p in country1_data.values.flatten()
+    ]
+    country2_pop = [
+        preprocess_population(p)
+        for p in country2_data.values.flatten()
+    ]
     years = country1_data.columns.astype(int)
 
     # Plot
