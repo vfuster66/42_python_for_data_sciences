@@ -12,7 +12,7 @@ class TestCalculator(unittest.TestCase):
         print_info(f"{self._testMethodName} - Test terminé\n")
 
     def test_dot_product(self):
-        print_title("Test ➜ dotproduct()")
+        print_title("Test ➜ Ex04 dotproduct()")
         a = [5, 10, 2]
         b = [2, 4, 3]
         result = calculator.dotproduct(a, b)
@@ -23,7 +23,7 @@ class TestCalculator(unittest.TestCase):
         )
 
     def test_add_vec(self):
-        print_title("Test ➜ add_vec()")
+        print_title("Test ➜ Ex04 add_vec()")
         a = [5, 10, 2]
         b = [2, 4, 3]
         result = calculator.add_vec(a, b)
@@ -34,7 +34,7 @@ class TestCalculator(unittest.TestCase):
         )
 
     def test_sous_vec(self):
-        print_title("Test ➜ sous_vec()")
+        print_title("Test ➜ Ex04 sous_vec()")
         a = [5, 10, 2]
         b = [2, 4, 3]
         result = calculator.sous_vec(a, b)

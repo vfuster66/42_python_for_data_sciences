@@ -1,12 +1,18 @@
 import unittest
 from ex00.S1E9 import Stark, Character
-from printer import print_title, print_success, print_failure
+from printer import print_title, print_info, print_success, print_failure
 
 
 class TestStark(unittest.TestCase):
 
+    def setUp(self):
+        print_info(f"{self._testMethodName} - Début du test")
+
+    def tearDown(self):
+        print_info(f"{self._testMethodName} - Test terminé")
+
     def test_01_instance_creation(self):
-        print_title("Test de la création d'une instance de Stark")
+        print_title("Test ➜ Ex00 Création d'une instance Stark")
         ned = Stark("Ned")
         if ned.first_name == "Ned" and ned.is_alive:
             print_success(f"Création OK : {ned.first_name}, "
@@ -17,7 +23,7 @@ class TestStark(unittest.TestCase):
         self.assertTrue(ned.is_alive)
 
     def test_02_is_alive_default(self):
-        print_title("Test de l'état de vie par défaut")
+        print_title("Test ➜ Ex00 Etat de vie par défaut")
         ned = Stark("Ned")
         if ned.is_alive:
             print_success("is_alive par défaut OK")
@@ -26,7 +32,7 @@ class TestStark(unittest.TestCase):
         self.assertTrue(ned.is_alive)
 
     def test_03_custom_is_alive(self):
-        print_title("Test avec un état de vie personnalisé")
+        print_title("Test ➜ Ex00 état de vie personnalisé")
         lyanna = Stark("Lyanna", False)
         if not lyanna.is_alive:
             print_success("is_alive personnalisé OK")
@@ -35,7 +41,7 @@ class TestStark(unittest.TestCase):
         self.assertFalse(lyanna.is_alive)
 
     def test_04_die_method(self):
-        print_title("Test de la méthode die()")
+        print_title("Test ➜ Ex00 méthode die()")
         ned = Stark("Ned")
         ned.die()
         if not ned.is_alive:
@@ -45,7 +51,7 @@ class TestStark(unittest.TestCase):
         self.assertFalse(ned.is_alive)
 
     def test_05_docstrings(self):
-        print_title("Test des docstrings")
+        print_title("Test ➜ Ex00 docstrings")
         if Stark.__doc__ and Stark.__init__.__doc__ and Stark.die.__doc__:
             print_success("Docstrings présents")
         else:
@@ -55,7 +61,7 @@ class TestStark(unittest.TestCase):
         self.assertIsNotNone(Stark.die.__doc__)
 
     def test_06_abstract_class_instantiation(self):
-        print_title("Test de la non-instantiation de Character")
+        print_title("Test ➜ Ex00 non-instantiation de Character")
         with self.assertRaises(TypeError):
             _ = Character("hodor")
         print_success("Instanciation interdite validée")

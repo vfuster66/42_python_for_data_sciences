@@ -13,7 +13,7 @@ class TestGameOfThrones(unittest.TestCase):
         print_info(f"{self._testMethodName} - Test terminé")
 
     def test_01_baratheon_instance_creation(self):
-        print_title("Test ➜ Baratheon Instance")
+        print_title("Test ➜ Ex01 Baratheon Instance")
         robert = Baratheon("Robert")
         self.assertEqual(robert.first_name, "Robert")
         self.assertEqual(robert.family_name, "Baratheon")
@@ -23,7 +23,7 @@ class TestGameOfThrones(unittest.TestCase):
         print_success("Baratheon instance creation OK")
 
     def test_02_lannister_instance_creation(self):
-        print_title("Test ➜ Lannister Instance")
+        print_title("Test ➜ Ex01 Lannister Instance")
         cersei = Lannister("Cersei")
         self.assertEqual(cersei.first_name, "Cersei")
         self.assertEqual(cersei.family_name, "Lannister")
@@ -33,7 +33,7 @@ class TestGameOfThrones(unittest.TestCase):
         print_success("Lannister instance creation OK")
 
     def test_03_die_method(self):
-        print_title("Test ➜ Die Method")
+        print_title("Test ➜ Ex01 Die Method")
         robert = Baratheon("Robert")
         robert.die()
         self.assertFalse(robert.is_alive)
@@ -44,7 +44,7 @@ class TestGameOfThrones(unittest.TestCase):
         print_success("Die method OK for both families")
 
     def test_04_create_lannister(self):
-        print_title("Test ➜ create_lannister() Method")
+        print_title("Test ➜ Ex01 create_lannister() Method")
         jaine = Lannister.create_lannister("Jaine", True)
         self.assertEqual(jaine.first_name, "Jaine")
         self.assertEqual(jaine.family_name, "Lannister")
@@ -52,7 +52,7 @@ class TestGameOfThrones(unittest.TestCase):
         print_success("create_lannister OK")
 
     def test_05_docstrings(self):
-        print_title("Test ➜ Docstrings")
+        print_title("Test ➜ Ex01 Docstrings")
         self.assertIsNotNone(Baratheon.__doc__)
         self.assertIsNotNone(Baratheon.__init__.__doc__)
         self.assertIsNotNone(Baratheon.die.__doc__)
@@ -61,13 +61,13 @@ class TestGameOfThrones(unittest.TestCase):
         print_success("Docstrings exist for all tested methods/classes")
 
     def test_06_abstract_class_instantiation(self):
-        print_title("Test ➜ Abstract Class Character Instantiation")
+        print_title("Test ➜ Ex01 Abstract Class Character Instantiation")
         with self.assertRaises(TypeError):
             _ = Character("Hodor")
         print_success("Abstract class instantiation correctly fails")
 
     def test_07_str_and_repr_methods(self):
-        print_title("Test ➜ __str__ and __repr__ Methods")
+        print_title("Test ➜ Ex01 __str__ and __repr__ Methods")
         robert = Baratheon("Robert")
         cersei = Lannister("Cersei")
 
