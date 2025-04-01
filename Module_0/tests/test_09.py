@@ -1,4 +1,4 @@
-from ex09.ft_package.count_in_list import count_in_list
+from ex09.ft_package import count_in_list
 from printer import print_title,  print_success, print_failure
 
 

@@ -18,8 +18,7 @@
 
 Assurez-vous que les fichiers suivants existent dans votre répertoire de projet :
 
-- `ft_package/__init__.py` : ce fichier définit le package.
-- `ft_package/count.py` : contient la fonction `count_in_list`.
+- `ft_package/__init__.py` : ce fichier contient la fonction count_in_list
 - `pyproject.toml` : fichier de configuration pour construire le package.
 - `LICENSE` : fichier de licence (par exemple, MIT).
 - `README.md` : fichier de description (ce fichier).

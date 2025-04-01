@@ -1,4 +1,4 @@
-from ft_package.count_in_list import count_in_list
+from ft_package import count_in_list
 from printer import print_title, print_info, print_success
 
 
