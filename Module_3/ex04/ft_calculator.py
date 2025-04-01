@@ -1,6 +1,3 @@
-from printer import print_info
-
-
 class calculator:
     """A class to perform basic vector and scalar calculations."""
 
@@ -10,7 +7,7 @@ class calculator:
         Calculate the dot product of two vectors.
         """
         result = sum(float(x) * float(y) for x, y in zip(V1, V2))
-        print_info(f"Dot product is: {result}")
+        print(f"Dot product is: {result}")
         return result
 
     @staticmethod
@@ -19,7 +16,7 @@ class calculator:
         Add two vectors element-wise.
         """
         result = [float(x) + float(y) for x, y in zip(V1, V2)]
-        print_info(f"Add Vector is: {result}")
+        print(f"Add Vector is: {result}")
         return result
 
     @staticmethod
@@ -28,5 +25,5 @@ class calculator:
         Subtract the second vector from the first vector element-wise.
         """
         result = [float(x) - float(y) for x, y in zip(V1, V2)]
-        print_info(f"Sous Vector is: {result}")
+        print(f"Sous Vector is: {result}")
         return result

@@ -1,6 +1,3 @@
-from printer import print_info
-
-
 class calculator:
     """A class to perform basic vector and scalar calculations."""
 
@@ -18,7 +15,7 @@ class calculator:
         Perform addition of the vector with a scalar.
         """
         self.vector = [x + scalar for x in self.vector]
-        print_info(f"Addition result: {self.vector}")
+        print(f"{self.vector}")
         return self.vector
 
     def __mul__(self, scalar):
@@ -26,7 +23,7 @@ class calculator:
         Perform multiplication of the vector with a scalar.
         """
         self.vector = [x * scalar for x in self.vector]
-        print_info(f"Multiplication result: {self.vector}")
+        print(f"{self.vector}")
         return self.vector
 
     def __sub__(self, scalar):
@@ -34,7 +31,7 @@ class calculator:
         Perform subtraction of a scalar from the vector.
         """
         self.vector = [x - scalar for x in self.vector]
-        print_info(f"Subtraction result: {self.vector}")
+        print(f"{self.vector}")
         return self.vector
 
     def __truediv__(self, scalar):
@@ -44,5 +41,5 @@ class calculator:
         if scalar == 0:
             raise ZeroDivisionError("Division by zero is not allowed.")
         self.vector = [x / scalar for x in self.vector]
-        print_info(f"Division result: {self.vector}")
+        print(f"{self.vector}")
         return self.vector
