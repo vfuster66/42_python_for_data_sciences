@@ -12,7 +12,7 @@ def format_time(seconds):
     m, s = divmod(seconds, 60)
     return f"{int(m):02d}:{int(s):02d}"
 
-def ft_tqdm(lst: range) -> None:
+def ft_tqdm(lst: range) -> None: # type: ignore
     """
     Simule une barre de progression pour l'itération à travers une plage.
     Args:
